@@ -1,0 +1,9 @@
+{
+  "firmware_dir": "local/firmware",
+  "qemu": "runtime/msys2/ucrt64/bin/qemu-system-aarch64.exe",
+  "initramfs": "runtime/alpine/initramfs-virt",
+  "kernel": "runtime/kernel/Image-4.14",
+  "node": "node",
+  "clang": "clang",
+  "linker": "ld.lld"
+}

@@ -1,0 +1,85 @@
+{
+  "python": {
+    "url": "https://www.python.org/ftp/python/3.11.9/python-3.11.9-embed-amd64.zip",
+    "sha256": "009d6bf7e3b2ddca3d784fa09f90fe54336d5b60f0e0f305c37f400bf83cfd3b",
+    "size": 11249023,
+    "filename": "python-3.11.9-embed-amd64.zip"
+  },
+  "node": {
+    "url": "https://nodejs.org/dist/v24.18.0/node-v24.18.0-win-x64.zip",
+    "sha256": "0ae68406b42d7725661da979b1403ec9926da205c6770827f33aac9d8f26e821",
+    "filename": "node-v24.18.0-win-x64.zip"
+  },
+  "python_packages": {
+    "pillow": {
+      "version": "12.2.0",
+      "wheels": [
+        {
+          "filename": "pillow-12.2.0-cp311-cp311-win_amd64.whl",
+          "url": "https://files.pythonhosted.org/packages/69/42/836b6f3cd7f3e5fa10a1f1a5420447c17966044c8fbf589cc0452d5502db/pillow-12.2.0-cp311-cp311-win_amd64.whl",
+          "sha256": "6e6b2a0c538fc200b38ff9eb6628228b77908c319a005815f2dde585a0664b60",
+          "size": 7082626
+        },
+        {
+          "filename": "pillow-12.2.0-cp312-cp312-win_amd64.whl",
+          "url": "https://files.pythonhosted.org/packages/5d/7b/25a221d2c761c6a8ae21bfa3874988ff2583e19cf8a27bf2fee358df7942/pillow-12.2.0-cp312-cp312-win_amd64.whl",
+          "sha256": "7f84204dee22a783350679a0333981df803dac21a0190d706a50475e361c93f5",
+          "size": 7084129
+        },
+        {
+          "filename": "pillow-12.2.0-cp313-cp313t-win_amd64.whl",
+          "url": "https://files.pythonhosted.org/packages/c2/c4/f9e476451a098181b30050cc4c9a3556b64c02cf6497ea421ac047e89e4b/pillow-12.2.0-cp313-cp313t-win_amd64.whl",
+          "sha256": "325ca0528c6788d2a6c3d40e3568639398137346c3d6e66bb61db96b96511c98",
+          "size": 7085542
+        },
+        {
+          "filename": "pillow-12.2.0-cp313-cp313-win_amd64.whl",
+          "url": "https://files.pythonhosted.org/packages/3f/82/8a3739a5e470b3c6cbb1d21d315800d8e16bff503d1f16b03a4ec3212786/pillow-12.2.0-cp313-cp313-win_amd64.whl",
+          "sha256": "390ede346628ccc626e5730107cde16c42d3836b89662a115a921f28440e6a3b",
+          "size": 7081266
+        },
+        {
+          "filename": "pillow-12.2.0-cp314-cp314t-win_amd64.whl",
+          "url": "https://files.pythonhosted.org/packages/ba/13/306d275efd3a3453f72114b7431c877d10b1154014c1ebbedd067770d629/pillow-12.2.0-cp314-cp314t-win_amd64.whl",
+          "sha256": "6562ace0d3fb5f20ed7290f1f929cae41b25ae29528f2af1722966a0a02e2aa1",
+          "size": 7225152
+        },
+        {
+          "filename": "pillow-12.2.0-cp314-cp314-win_amd64.whl",
+          "url": "https://files.pythonhosted.org/packages/cd/8b/601e6566b957ca50e28725cb6c355c59c2c8609751efbecd980db44e0349/pillow-12.2.0-cp314-cp314-win_amd64.whl",
+          "sha256": "4e6c62e9d237e9b65fac06857d511e90d8461a32adcc1b9065ea0c0fa3a28150",
+          "size": 7217400
+        }
+      ]
+    },
+    "zstandard": {
+      "version": "0.25.0",
+      "wheels": [
+        {
+          "filename": "zstandard-0.25.0-cp311-cp311-win_amd64.whl",
+          "url": "https://files.pythonhosted.org/packages/43/a3/c6155f5c1cce691cb80dfd38627046e50af3ee9ddc5d0b45b9b063bfb8c9/zstandard-0.25.0-cp311-cp311-win_amd64.whl",
+          "sha256": "daab68faadb847063d0c56f361a289c4f268706b598afbf9ad113cbe5c38b6b2",
+          "size": 506183
+        },
+        {
+          "filename": "zstandard-0.25.0-cp312-cp312-win_amd64.whl",
+          "url": "https://files.pythonhosted.org/packages/79/3b/fa54d9015f945330510cb5d0b0501e8253c127cca7ebe8ba46a965df18c5/zstandard-0.25.0-cp312-cp312-win_amd64.whl",
+          "sha256": "ffef5a74088f1e09947aecf91011136665152e0b4b359c42be3373897fb39b01",
+          "size": 506276
+        },
+        {
+          "filename": "zstandard-0.25.0-cp313-cp313-win_amd64.whl",
+          "url": "https://files.pythonhosted.org/packages/d9/82/b9c06c870f3bd8767c201f1edbdf9e8dc34be5b0fbc5682c4f80fe948475/zstandard-0.25.0-cp313-cp313-win_amd64.whl",
+          "sha256": "1f830a0dac88719af0ae43b8b2d6aef487d437036468ef3c2ea59c51f9d55fd5",
+          "size": 506232
+        },
+        {
+          "filename": "zstandard-0.25.0-cp314-cp314-win_amd64.whl",
+          "url": "https://files.pythonhosted.org/packages/3a/43/241f9615bcf8ba8903b3f0432da069e857fc4fd1783bd26183db53c4804b/zstandard-0.25.0-cp314-cp314-win_amd64.whl",
+          "sha256": "c19bcdd826e95671065f8692b5a4aa95c52dc7a02a4c5a0cac46deb879a017a2",
+          "size": 516118
+        }
+      ]
+    }
+  }
+}

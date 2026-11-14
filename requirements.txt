@@ -1,0 +1,3 @@
+# Setup installs verified wheels locally; it does not alter system site-packages.
+Pillow==12.2.0
+zstandard==0.25.0

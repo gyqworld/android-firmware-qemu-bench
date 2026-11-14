@@ -1,0 +1,33 @@
+on early-init
+    setprop ro.hardware.gralloc bench
+    setprop ro.hardware.hwcomposer bench
+    setprop ro.hardware.egl swiftshader
+    setprop debug.egl.hw 0
+    setprop ro.sf.lcd_density 160
+    setprop ro.opengles.version 196608
+    setprop debug.sf.disable_hwc 0
+    setprop ro.zygote.disable_gl_preload true
+
+on init
+    start bench-display-port
+
+on boot
+    class_start main
+    class_start late_start
+
+on property:sys.boot_completed=1
+    start bench-amap
+
+service bench-amap /system/bin/sh /bench/autostart-amap.sh
+    user root
+    group root system graphics
+    seclabel u:r:shell:s0
+    disabled
+    oneshot
+
+service bench-display-port /system/bin/sh /bench/display-port.sh
+    user root
+    group root system graphics
+    seclabel u:r:shell:s0
+    disabled
+    oneshot

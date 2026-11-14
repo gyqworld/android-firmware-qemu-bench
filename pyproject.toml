@@ -1,0 +1,9 @@
+[project]
+name = "android-firmware-qemu-bench"
+version = "0.1.0"
+description = "Source-only Windows ARM64 firmware Android userspace compatibility bench"
+requires-python = ">=3.11"
+dependencies = ["Pillow==12.2.0"]
+
+[tool.ruff]
+line-length = 110

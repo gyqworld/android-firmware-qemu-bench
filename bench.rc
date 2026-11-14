@@ -1,0 +1,45 @@
+# Imported into a temporary RAM overlay. Original firmware init and binaries run.
+on early-init
+    loglevel 7
+
+on init
+    chmod 0666 /dev/null
+    chmod 0666 /dev/zero
+    chmod 0666 /dev/random
+    chmod 0666 /dev/urandom
+    chmod 0666 /dev/binder
+    chmod 0666 /dev/hwbinder
+    chmod 0666 /dev/vndbinder
+    chmod 0666 /dev/ashmem
+    chmod 0666 /dev/ion
+    setprop ro.crypto.state unsupported
+    setprop sys.init_log_level 7
+    start bench-observer
+    start bench-control
+
+on post-fs-data
+    loglevel 7
+    chmod 0666 /dev/null
+    chmod 0666 /dev/binder
+    chmod 0666 /dev/hwbinder
+    chmod 0666 /dev/vndbinder
+    chmod 0666 /dev/ashmem
+
+on boot
+    loglevel 7
+
+service bench-observer /system/bin/sh /bench/observer.sh
+    class core
+    user root
+    group root system readproc log
+    seclabel u:r:shell:s0
+    disabled
+    oneshot
+
+service bench-control /system/bin/sh /bench/control.sh
+    class core
+    user root
+    group root system readproc log
+    seclabel u:r:shell:s0
+    disabled
+    oneshot
