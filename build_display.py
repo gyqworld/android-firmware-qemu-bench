@@ -9,7 +9,7 @@ def main():
     for n in ['gralloc-bench','egl-probe','seed-rng']:
         obj=out/(n+'.o');target=out/('gralloc.bench.so' if n=='gralloc-bench' else n)
         commands=[[clang,'--target=aarch64-linux-android28','-mno-outline-atomics','-ffreestanding','-fPIC','-fno-stack-protector','-fno-builtin','-O2','-I'+str(inc),'-c',str(D/'native'/f'{n}.c'),'-o',str(obj)],
-            [ld,'-shared' if n=='gralloc-bench' else '-pie','--no-undefined','--hash-style=both','--dynamic-linker=/system/bin/linker64','-L'+str(link),str(obj),'-lc','-llog','-lcutils','-ldl','-o',str(target)]]
+            [ld,'-m','aarch64linux','-shared' if n=='gralloc-bench' else '-pie','--no-undefined','--hash-style=both','--dynamic-linker=/system/bin/linker64','-L'+str(link),str(obj),'-lc','-llog','-lcutils','-ldl','-o',str(target)]]
         for cmd in commands:
             p=subprocess.run(cmd,capture_output=True,text=True);logs.append({'command':cmd,'exit_status':p.returncode,'stdout':p.stdout,'stderr':p.stderr})
             if p.returncode:print(p.stderr);raise SystemExit(p.returncode)

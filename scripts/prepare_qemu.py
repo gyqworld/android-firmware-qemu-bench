@@ -20,7 +20,7 @@ def selected(name):
     if name.startswith('ucrt64/bin/'):
         base = Path(name).name.lower()
         return base in EXES or base.endswith('.dll')
-    return name.startswith(('ucrt64/share/qemu/', 'ucrt64/share/licenses/', 'ucrt64/lib/qemu/'))
+    return name.startswith(('ucrt64/share/qemu/', 'ucrt64/share/licenses/', 'ucrt64/lib/qemu/', 'ucrt64/lib/clang/'))
 
 
 def prepare(root=ROOT, *, llvm=False, qemu=True, downloader=None):

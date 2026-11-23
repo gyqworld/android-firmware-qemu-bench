@@ -6,12 +6,48 @@ from config import load
 D=Path(__file__).resolve().parent
 URL='https://dl.google.com/android/repository/sys-img/android/arm64-v8a-29_r08.zip'
 
-def request_range(start,end):
-    request=urllib.request.Request(URL,headers={'Range':f'bytes={start}-{end}'})
-    with urllib.request.urlopen(request,timeout=90)as f:
-        if f.status!=206:raise RuntimeError('Server did not honor range request')
-        result=f.read(64*1024*1024)
-    return result
+from concurrent.futures import ThreadPoolExecutor
+
+def fetch_chunk(s, e):
+    for attempt in range(6):
+        try:
+            req = urllib.request.Request(URL, headers={'Range': f'bytes={s}-{e}', 'User-Agent': 'curl/7.88'})
+            with urllib.request.urlopen(req, timeout=45) as f:
+                if f.status != 206:
+                    raise RuntimeError(f'Status {f.status}')
+                buf = bytearray()
+                while len(buf) < (e - s + 1):
+                    chunk = f.read(min(524288, (e - s + 1) - len(buf)))
+                    if not chunk:
+                        break
+                    buf.extend(chunk)
+                if len(buf) == (e - s + 1):
+                    return bytes(buf)
+        except Exception:
+            if attempt == 5:
+                raise
+            import time
+            time.sleep(1)
+    raise RuntimeError(f'Failed to fetch range {s}-{e}')
+
+def request_range(start, end):
+    total = end - start + 1
+    if total <= 262144:
+        return fetch_chunk(start, end)
+    chunk_size = 524288
+    ranges = []
+    curr = start
+    while curr <= end:
+        chunk_end = min(curr + chunk_size - 1, end)
+        ranges.append((curr, chunk_end))
+        curr = chunk_end + 1
+    results = [None] * len(ranges)
+    def worker(idx):
+        s, e = ranges[idx]
+        results[idx] = fetch_chunk(s, e)
+    with ThreadPoolExecutor(max_workers=16) as pool:
+        list(pool.map(worker, range(len(ranges))))
+    return b''.join(results)
 
 def main(offline=False):
     cfg=load()

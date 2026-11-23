@@ -63,7 +63,14 @@ class Downloader:
                 return target
         if self.offline:
             raise FileNotFoundError('Offline cache is missing verified dependency: ' + name)
-        urls = spec.get('urls', [spec.get('url')])
+        urls = list(spec.get('urls', [spec.get('url')]))
+        mirror_urls = []
+        for u in urls:
+            if 'repo.msys2.org/mingw/ucrt64/' in u:
+                mirror_urls.append(u.replace('https://repo.msys2.org/mingw/ucrt64/', 'https://mirrors.ustc.edu.cn/msys2/mingw/ucrt64/'))
+            elif 'mirror.msys2.org/mingw/ucrt64/' in u:
+                mirror_urls.append(u.replace('https://mirror.msys2.org/mingw/ucrt64/', 'https://mirrors.ustc.edu.cn/msys2/mingw/ucrt64/'))
+        urls = mirror_urls + urls
         partial = target.with_name(target.name + '.partial')
         failures = []
         for url in urls:
@@ -77,7 +84,7 @@ class Downloader:
                     curl = shutil.which('curl.exe') or shutil.which('curl')
                     if curl:
                         command = [curl, '--fail', '--location', '--silent', '--show-error',
-                            '--proto', '=https', '--proto-redir', '=https', '--connect-timeout', '15',
+                            '--proto', '=https', '--proto-redir', '=https', '--ssl-no-revoke', '--connect-timeout', '15',
                             '--max-time', '180', '--max-filesize', str(size or 1024 * 1024 * 1024),
                             '--output', str(partial), '--write-out', '%{url_effective}', url]
                         result = subprocess.run(command, capture_output=True, timeout=195)
